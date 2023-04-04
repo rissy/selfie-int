@@ -1,10 +1,10 @@
 const CURSOR = '<span class="cursor"></span>';
 const WELCOME = `
-  ############################
-  # Aleksey Goroshevskiy, 29 #
-  # Lead of Development Team #
-  # Dubai, UAE               #
-  ############################
+  ##############################
+  #  Aleksei Goroshevskii, 29  #
+  #  Lead of Development Team  #
+  #  Dubai, UAE                #
+  ##############################
 
 Type "help" for more information
 
