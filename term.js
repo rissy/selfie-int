@@ -179,7 +179,7 @@ class Input {
     this.inputHistory[this.historyInd] = this.leftInputBuffer;
 
     this.leftInputBuffer = this.historyInd === this.inputHistory.length - 1
-      ? this.inputHistory.pop(this.leftInputBuffer)
+      ? this.inputHistory.pop()
       : this.inputHistory[++this.historyInd];
   }
 }
