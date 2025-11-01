@@ -10,6 +10,7 @@ html, body {
   line-height: 1.2em;
   font-size: 15px;
   padding-left: 5px;
+  padding-bottom: 20px;
   word-wrap: break-word;
   white-space: pre-wrap;
   box-sizing: border-box;
@@ -19,18 +20,20 @@ html, body {
 
 .input {
   position: absolute;
-  top: -10000px;
-  left: -10000px;
+  top: 0;
+  left: 0;
+  opacity: 0;
   overflow: hidden;
   width: 0;
   height: 0;
 }
 
 .cursor {
-  position: absolute;
+  display: inline-block;
+  vertical-align: text-top;
   background-color: #fafafa;
-  width: 0.1em;
-  height: 1.1em;
+  width: 9px;
+  height: 1.0em;
   animation: cursor 1s infinite;
 }
 

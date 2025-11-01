@@ -21,15 +21,16 @@ class Term {
 
   constructor() {
     this.addResizeListener();
-    this.reinitializeTerm();
+    this.reinitializeTerm(false);
   }
 
-  reinitializeTerm() {
+  reinitializeTerm(hasFocus = true) {
     if (this.termBuffer.length > TERM_MAX_LENGTH) {
       this.termBuffer = this.termBuffer.slice(this.termBuffer.length - TERM_MAX_LENGTH);
     }
 
-    this.term$.innerHTML = this.termBuffer + `<span class="prompt-line">${LINE_BEGINNING}${CURSOR}</span>`;
+    const cursor = hasFocus ? CURSOR : '';
+    this.term$.innerHTML = this.termBuffer + `<span class="prompt-line">${LINE_BEGINNING}${cursor}</span>`;
     this.term$.scrollTop = this.term$.scrollHeight;
   }
 
@@ -41,23 +42,31 @@ class Term {
     this.setTerminalHeight();
     window.addEventListener('resize', () => this.setTerminalHeight());
   }
-
-  addPromptLineClickListener(callback) {
+  
+  addPromptLineClickListener(focusCallback, blurCallback) {
     this.term$.addEventListener('click', (e) => {
+      if (window.getSelection().toString()) {
+        return;
+      }
+
       const promptLine = this.term$.querySelector('.prompt-line');
+      
       if (!promptLine) return;
 
       const promptLineTop = promptLine.offsetTop;
       const clickY = e.clientY - this.term$.getBoundingClientRect().top + this.term$.scrollTop;
 
       if (clickY >= promptLineTop) {
-        callback(e);
+        focusCallback(e);
+      } else {
+        blurCallback();
       }
     });
   }
 
-  typeLetter(leftInputBuffer, rightInputBuffer) {
-    this.term$.innerHTML = this.termBuffer + `<span class="prompt-line">${LINE_BEGINNING}${leftInputBuffer}${CURSOR}${rightInputBuffer}</span>`;
+  typeLetter(leftInputBuffer, rightInputBuffer, hasFocus = true) {
+    const cursor = hasFocus ? CURSOR : '';
+    this.term$.innerHTML = this.termBuffer + `<span class="prompt-line">${LINE_BEGINNING}${leftInputBuffer}${cursor}${rightInputBuffer}</span>`;
   }
 
   enterLine(inputBuffer) {
@@ -66,7 +75,7 @@ class Term {
     const command = inputBuffer.split(' ')[0].trim();
 
     this.proceedCommand(command);
-    this.reinitializeTerm();
+    this.reinitializeTerm(true);
   }
 
   proceedCommand(command) {
@@ -89,14 +98,19 @@ class Input {
 
   constructor(term) {
     this.term = term;
-
     this.initializeInput();
   }
 
   initializeInput() {
     this.input$.addEventListener('keydown', this.typeLetter.bind(this));
-
-    this.term.addPromptLineClickListener(this.focusOnInput.bind(this));
+    
+    this.input$.addEventListener('focus', this.onFocus.bind(this));
+    this.input$.addEventListener('blur', this.onBlur.bind(this));
+    
+    this.term.addPromptLineClickListener(
+        this.focusOnInput.bind(this),
+        this.blurInput.bind(this)
+    );
 
     this.focusOnInput();
   }
@@ -130,13 +144,13 @@ class Input {
         break;
       default:
         if (
-          (e.keyCode >= 48 && e.keyCode <= 90
-          || e.keyCode >= 96 && e.keyCode <= 111
-          || e.keyCode >= 186 && e.keyCode <= 192
-          || e.keyCode >= 219 && e.keyCode <= 222
-          || e.keyCode === 32)
-          && !e.ctrlKey
-          && !e.metaKey
+            (e.keyCode >= 48 && e.keyCode <= 90
+                || e.keyCode >= 96 && e.keyCode <= 111
+                || e.keyCode >= 186 && e.keyCode <= 192
+                || e.keyCode >= 219 && e.keyCode <= 222
+                || e.keyCode === 32)
+            && !e.ctrlKey
+            && !e.metaKey
         ) {
           if (this.leftInputBuffer.length === INPUT_MAX_LENGTH) {
             return;
@@ -145,8 +159,8 @@ class Input {
           this.leftInputBuffer += e.key;
         }
     }
-
-    this.term.typeLetter(this.leftInputBuffer, this.rightInputBuffer);
+    
+    this.term.typeLetter(this.leftInputBuffer, this.rightInputBuffer, true);
   }
 
   focusOnInput(e = null) {
@@ -155,6 +169,18 @@ class Input {
     if (!window.getSelection().toString()) {
       this.input$.focus({preventScroll: true});
     }
+  }
+  
+  blurInput() {
+    this.input$.blur();
+  }
+  
+  onFocus() {
+    this.term.typeLetter(this.leftInputBuffer, this.rightInputBuffer, true);
+  }
+  
+  onBlur() {
+    this.term.typeLetter(this.leftInputBuffer, this.rightInputBuffer, false);
   }
 
   onEnterLine() {
@@ -189,6 +215,7 @@ class Input {
     }
 
     this.leftInputBuffer = this.inputHistory[--this.historyInd];
+    this.term.typeLetter(this.leftInputBuffer, this.rightInputBuffer, true); // ДОБАВЛЕНО: Обновляем курсор
   }
 
   onHistoryDown() {
@@ -199,8 +226,9 @@ class Input {
     this.inputHistory[this.historyInd] = this.leftInputBuffer;
 
     this.leftInputBuffer = this.historyInd === this.inputHistory.length - 1
-      ? this.inputHistory.pop()
-      : this.inputHistory[++this.historyInd];
+        ? this.inputHistory.pop()
+        : this.inputHistory[++this.historyInd];
+    this.term.typeLetter(this.leftInputBuffer, this.rightInputBuffer, true); // ДОБАВЛЕНО: Обновляем курсор
   }
 }
 
