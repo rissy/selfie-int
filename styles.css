@@ -16,7 +16,6 @@ html, body {
   box-sizing: border-box;
   overflow-y: auto;
   cursor: text;
-  height: 100%;
 }
 
 .input {
