@@ -1,8 +1,8 @@
 const CURSOR = '<span class="cursor"></span>';
 const WELCOME = `
   ##############################
-  #  Aleksei Goroshevskii, 29  #
-  #  Lead of Development Team  #
+  #  Aleksei Goroshevskii, 31  #
+  #  UI/UX Architect           #
   #  Dubai, UAE                #
   ##############################
 
@@ -189,43 +189,55 @@ new Input(term);
 
 const TEXT_COMMANDS = {
   about: `
-I've been developing for more than 12
-years. My first projects were in C and
-Python, ranging from small scripts,
-bots, and simple applications with
-routine automation and scientific
-visualization to speech recognition with
-ML. After that, I worked as a frontend
-developer for over six years. Mostly, I
-worked with Angular and pure JS stacks
-but also touched server-side Node.js,
-Kotlin (with Spring), and even
-TensorFlow.js. In addition, I spent a
-lot of time writing unit and integration
-tests and CI/CD pipelines.
+An experienced software architect and
+engineering leader with over 14 years
+in development.
 
-For the last couple of years, I've been
-challenging myself as a team leader.
-These days, I work with a team,
-including several frontend developers, a
-backend developer, and a QA engineer. We
-use Kanban methodology, TBD, team
-metrics, and many other practices to
-make our work more productive and
-predictable for the business.
+My career began with C and Python,
+where I worked on everything from
+automation and scientific visualization
+to speech recognition using machine
+learning.
 
-I've been working on complex fintech
-projects and their frontend
-infrastructure with modern software
-stacks based on Nx and Angular. Also, I
-have experience teaching frontend to
-students. I'm looking forward to great
-possibilities to make valuable and
-practical software as a developer or
-team leader.
+For more than seven years, I specialized
+in frontend development, primarily with
+Angular. During this time, my focus was
+on the hands-on development of scalable
+frontend platforms and infrastructure
+that supported dozens of B2B products.
+My technical expertise also extends to
+backend development with Node.js and
+Kotlin (Spring), setting up CI/CD
+pipelines, and integrating machine
+learning with TensorFlow.js. I also
+have a passion for education and
+experience in teaching frontend
+development to students.
+
+I then transitioned into leadership,
+heading a cross-functional team of
+frontend, mobile, and QA engineers.
+As a leader, I focused on creating
+productive and predictable workflows
+using Kanban and team metrics, while
+collaborating closely with business
+teams to achieve shared company goals.
+
+In my current role as a UI Architect,
+I architect scalable frontend and mobile
+platforms for the corporate banking
+sector by designing modular,
+high-performance architectures and
+ensuring their seamless integration
+across web and mobile applications.
+
+I am driven to create valuable,
+practical software, whether in
+a hands-on architectural role or as
+an engineering leader
   `,
   contacts: `
-  telegram   @rissik
+  signal     rissik.42
   linkedin   rissik
   email      hr@rissik.me
   `,
@@ -257,13 +269,12 @@ team leader.
   edu: `
 Master degree in Computer Science, 2018
 Lomonosov Moscow State University
-With honor
+With Honours
   `,
   exp: `
-Tinkoff Bank
+T-Bank (ex. Tinkoff Bank)
 Russian largest fintech company
 2017 - this time
-TeamLead
   `,
   help: `
 List of available commands:
@@ -278,22 +289,16 @@ List of available commands:
   skills     list of my skills
   `,
   langs: `
-  English    Upper Intermediate
-  Russian    Native
-  Arabic     Beginner
+  English
+  Russian
   `,
   skills: `
-Angular,
-Nx, TensorFlow.js, ML,
-ngRx, rxJs, webpack, sockets, SSE
-Units, Integrations, Jest, Cypress
-PWA, Service Workers
-Nest, Node.js, Bash
-CI/CD, K8s, git, REST,
-Leading, TBD, Agile, Kanban,
-JavaScript, Typescript, Python, C, C#
-Frontend, Backend, Full Stack,
-... more ...
+Frontend Architecture
+System Design
+Platform Development
+Cross-functional Team Leadership
+Angular
+... and more
   `,
 };
 
