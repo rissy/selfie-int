@@ -20,7 +20,7 @@ class Term {
   termBuffer = WELCOME;
 
   constructor() {
-    this.term$.style.height = `${window.innerHeight}px`;
+    this.addResizeListener();
     this.reinitializeTerm();
   }
 
@@ -33,9 +33,24 @@ class Term {
     this.term$.scrollTop = this.term$.scrollHeight;
   }
 
+  setTerminalHeight() {
+    this.term$.style.height = `${window.innerHeight}px`;
+  }
+
+  addResizeListener() {
+    this.setTerminalHeight();
+    window.addEventListener('resize', () => this.setTerminalHeight());
+  }
+
   addPromptLineClickListener(callback) {
     this.term$.addEventListener('click', (e) => {
-      if (e.target.closest('.prompt-line')) {
+      const promptLine = this.term$.querySelector('.prompt-line');
+      if (!promptLine) return;
+
+      const promptLineTop = promptLine.offsetTop;
+      const clickY = e.clientY - this.term$.getBoundingClientRect().top + this.term$.scrollTop;
+
+      if (clickY >= promptLineTop) {
         callback(e);
       }
     });
