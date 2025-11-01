@@ -29,16 +29,20 @@ class Term {
       this.termBuffer = this.termBuffer.slice(this.termBuffer.length - TERM_MAX_LENGTH);
     }
 
-    this.term$.innerHTML = this.termBuffer + LINE_BEGINNING + CURSOR;
+    this.term$.innerHTML = this.termBuffer + `<span class="prompt-line">${LINE_BEGINNING}${CURSOR}</span>`;
     this.term$.scrollTop = this.term$.scrollHeight;
   }
 
-  onClickOnTermListener(callback) {
-    this.term$.addEventListener('click', callback);
+  addPromptLineClickListener(callback) {
+    this.term$.addEventListener('click', (e) => {
+      if (e.target.closest('.prompt-line')) {
+        callback(e);
+      }
+    });
   }
 
   typeLetter(leftInputBuffer, rightInputBuffer) {
-    this.term$.innerHTML = this.termBuffer + LINE_BEGINNING + leftInputBuffer + CURSOR + rightInputBuffer;
+    this.term$.innerHTML = this.termBuffer + `<span class="prompt-line">${LINE_BEGINNING}${leftInputBuffer}${CURSOR}${rightInputBuffer}</span>`;
   }
 
   enterLine(inputBuffer) {
@@ -77,7 +81,7 @@ class Input {
   initializeInput() {
     this.input$.addEventListener('keydown', this.typeLetter.bind(this));
 
-    this.term.onClickOnTermListener(this.focusOnInput.bind(this));
+    this.term.addPromptLineClickListener(this.focusOnInput.bind(this));
 
     this.focusOnInput();
   }
