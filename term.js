@@ -189,52 +189,17 @@ new Input(term);
 
 const TEXT_COMMANDS = {
   about: `
-An experienced software architect and
-engineering leader with over 14 years
-in development.
+An experienced software architect and engineering leader with over 14 years in development.
 
-My career began with C and Python,
-where I worked on everything from
-automation and scientific visualization
-to speech recognition using machine
-learning.
+My career began with C and Python, where I worked on everything from automation and scientific visualization to speech recognition using machine learning.
 
-For more than seven years, I specialized
-in frontend development, primarily with
-Angular. During this time, my focus was
-on the hands-on development of scalable
-frontend platforms and infrastructure
-that supported dozens of B2B products.
-My technical expertise also extends to
-backend development with Node.js and
-Kotlin (Spring), setting up CI/CD
-pipelines, and integrating machine
-learning with TensorFlow.js. I also
-have a passion for education and
-experience in teaching frontend
-development to students.
+For more than seven years, I specialized in frontend development, primarily with Angular. During this time, my focus was on the hands-on development of scalable frontend platforms and infrastructure that supported dozens of B2B products. My technical expertise also extends to backend development with Node.js and Kotlin (Spring), setting up CI/CD pipelines, and integrating machine learning with TensorFlow.js. I also have a passion for education and experience in teaching frontend development to students.
 
-I then transitioned into leadership,
-heading a cross-functional team of
-frontend, mobile, and QA engineers.
-As a leader, I focused on creating
-productive and predictable workflows
-using Kanban and team metrics, while
-collaborating closely with business
-teams to achieve shared company goals.
+I then transitioned into leadership, heading a cross-functional team of frontend, mobile, and QA engineers. As a leader, I focused on creating productive and predictable workflows using Kanban and team metrics, while collaborating closely with business teams to achieve shared company goals.
 
-In my current role as a UI Architect,
-I architect scalable frontend and mobile
-platforms for the corporate banking
-sector by designing modular,
-high-performance architectures and
-ensuring their seamless integration
-across web and mobile applications.
+In my current role as a UI Architect, I architect scalable frontend and mobile platforms for the corporate banking sector by designing modular, high-performance architectures and ensuring their seamless integration across web and mobile applications.
 
-I am driven to create valuable,
-practical software, whether in
-a hands-on architectural role or as
-an engineering leader
+I am driven to create valuable, practical software, whether in a hands-on architectural role or as an engineering leader.
   `,
   contacts: `
   signal     rissik.42
@@ -278,7 +243,6 @@ Russian largest fintech company
   `,
   help: `
 List of available commands:
-
   about      a short introduction
   contacts   ways to contact with me
   duck       easter egg
