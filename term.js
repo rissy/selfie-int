@@ -20,7 +20,6 @@ class Term {
   termBuffer = WELCOME;
 
   constructor() {
-    this.addResizeListener();
     this.reinitializeTerm(false);
   }
 
@@ -32,15 +31,6 @@ class Term {
     const cursor = hasFocus ? CURSOR : '';
     this.term$.innerHTML = this.termBuffer + `<span class="prompt-line">${LINE_BEGINNING}${cursor}</span>`;
     this.term$.scrollTop = this.term$.scrollHeight;
-  }
-
-  setTerminalHeight() {
-    this.term$.style.height = `${window.innerHeight}px`;
-  }
-
-  addResizeListener() {
-    this.setTerminalHeight();
-    window.addEventListener('resize', () => this.setTerminalHeight());
   }
   
   addPromptLineClickListener(focusCallback, blurCallback) {
