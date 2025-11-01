@@ -20,6 +20,7 @@ class Term {
   termBuffer = WELCOME;
 
   constructor() {
+    this.term$.style.height = `${window.innerHeight}px`;
     this.reinitializeTerm();
   }
 
@@ -29,7 +30,7 @@ class Term {
     }
 
     this.term$.innerHTML = this.termBuffer + LINE_BEGINNING + CURSOR;
-    window.scrollTo(0, this.term$.scrollHeight);
+    this.term$.scrollTop = this.term$.scrollHeight;
   }
 
   onClickOnTermListener(callback) {

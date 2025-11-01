@@ -10,10 +10,10 @@ html, body {
   line-height: 1.2em;
   font-size: 15px;
   padding-left: 5px;
-  height: 100%;
   word-wrap: break-word;
   white-space: pre-wrap;
   box-sizing: border-box;
+  overflow-y: auto;
 }
 
 .input {
